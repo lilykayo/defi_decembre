@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First to 14!</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    .counter-container {
+      margin: 20px 0;
+    }
+    .counter-label {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+    .counter {
+      font-size: 24px;
+      margin: 0 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>First to 14!</h1>
+
+  <div class="counter-container">
+    <span class="counter-label">Counter 1:</span>
+    <span id="counter1" class="counter">0</span>
+    <button onclick="changeCounter('counter1', 1)">+</button>
+    <button onclick="changeCounter('counter1', -1)">-</button>
+  </div>
+
+  <div class="counter-container">
+    <span class="counter-label">Counter 2:</span>
+    <span id="counter2" class="counter">0</span>
+    <button onclick="changeCounter('counter2', 1)">+</button>
+    <button onclick="changeCounter('counter2', -1)">-</button>
+  </div>
+
+  <script>
+    // Load counters from localStorage
+    const loadCounters = () => {
+      const counter1 = localStorage.getItem('counter1') || 0;
+      const counter2 = localStorage.getItem('counter2') || 0;
+
+      document.getElementById('counter1').textContent = counter1;
+      document.getElementById('counter2').textContent = counter2;
+    };
+
+    // Change counter value
+    const changeCounter = (counterId, delta) => {
+      const counterElement = document.getElementById(counterId);
+      let currentValue = parseInt(counterElement.textContent, 10);
+      currentValue += delta;
+
+      // Prevent negative values
+      if (currentValue < 0) currentValue = 0;
+
+      counterElement.textContent = currentValue;
+
+      // Save to localStorage
+      localStorage.setItem(counterId, currentValue);
+    };
+
+    // Initialize counters on page load
+    document.addEventListener('DOMContentLoaded', loadCounters);
+  </script>
+</body>
+</html>
