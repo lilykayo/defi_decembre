@@ -35,7 +35,7 @@
 
   <div class="counter-container">
     <span class="counter-label">Arthur :</span>
-    <span id="counter1" class="counter">0</span>
+    <span id="counter1" class="counter">1</span>
     <button onclick="changeCounter('counter1', 1)">+</button>
     <button onclick="changeCounter('counter1', -1)">-</button>
   </div>
@@ -50,10 +50,8 @@
   <script>
     // Load counters from localStorage
     const loadCounters = () => {
-      const counter1 = localStorage.getItem('counter1') || 0;
       const counter2 = localStorage.getItem('counter2') || 0;
 
-      document.getElementById('counter1').textContent = counter1;
       document.getElementById('counter2').textContent = counter2;
     };
 
